@@ -46,8 +46,7 @@ public class TodoListController {
     public String showList(Model model) {
         model.addAttribute("todoItemForm", new TodoItemForm());
         model.addAttribute("motivationMessage", motivationMessageService.computeMotivationMessage(0, 0));
-        model.addAttribute("visitorCount", visitorCounter.getCount().incrementAndGet());
-
+        model.addAttribute("visitorCount", visitorCounter.getCount().incrementAndGet() + " time");
         return "list";
     }
 
@@ -59,7 +58,7 @@ public class TodoListController {
         model.addAttribute("todoList", foundTodoList);
         model.addAttribute("todoItemForm", new TodoItemForm());
         model.addAttribute("motivationMessage", motivationMessageService.computeMotivationMessage(foundTodoList.countTotal(), foundTodoList.countFinishedItems()));
-        model.addAttribute("visitorCount", visitorCounter.getCount().incrementAndGet());
+        model.addAttribute("visitorCount", visitorCounter.getCount().incrementAndGet() + " time");
 
         return "list";
     }
