@@ -1,6 +1,7 @@
 package com.example.sitodo.functional;
 
 import com.example.sitodo.util.VisitorCounter;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -32,10 +33,23 @@ public class CountVisitorTest extends BaseFunctionalTest {
         //       di akhir setiap test di dalam class test suite ini.
     }
 
+    @SneakyThrows
     @Test
     @DisplayName("Ketika mengunjungi laman list pertama kali, jumlah kunjungan harus sebanyak 1")
     void singleVisit_toTodoList() {
-        // TODO: Implementasi test sesungguhnya.
+        // Minta browser (via Selenium) agar membuka URL berikut: “/”
+        open("/");
+        // Pause program test selama 500 milisekon untuk
+        // memberikan kesempatan kepada browser untuk membuka
+        // dan menampilkan URL yang diminta
+        Thread.sleep(500);
+        // Minta Selenium untuk mendapatkan referensi terhadap
+        // elemen HTML dengan atribut ID bernilai visitor_count
+        // dari jendela browser
+        WebElement visitorCount = $(By.id("visitor_count"));
+        // Cek nilai teks elemen HTML di atas apakah mengandung
+        // sebuah string bernilai “1 time”
+        assertThat(visitorCount.getText(), containsString("1 time"));
     }
 
     @Test
